@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Developer Tools</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo">T</div>
+        <div>
+          <div class="brand-title" data-i18n="appTitle">开发工具箱</div>
+          <div class="brand-subtitle" data-i18n="appSubtitle">静态网页工具集</div>
+        </div>
+      </div>
+      <nav class="tool-menu" id="toolMenu"></nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-only" id="menuToggle" type="button" aria-label="Menu">☰</button>
+        <div class="topbar-title" id="currentToolTitle">Developer Tools</div>
+        <div class="topbar-actions">
+          <select id="langSelect" class="lang-select" aria-label="Language">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </header>
+
+      <section class="content" id="content"></section>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

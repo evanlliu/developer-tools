@@ -1,0 +1,515 @@
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --panel-soft: #f8fafc;
+  --text: #172033;
+  --muted: #6b7280;
+  --border: #dfe4ec;
+  --primary: #4f7df3;
+  --primary-dark: #315fd4;
+  --primary-soft: #eaf0ff;
+  --danger: #e5484d;
+  --success: #1f9d55;
+  --shadow: 0 14px 40px rgba(16, 24, 40, 0.08);
+  --radius: 14px;
+  --sidebar-width: 284px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+}
+
+.brand {
+  height: 76px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), #8ea9ff);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.brand-title {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.tool-menu {
+  padding: 12px 8px;
+  overflow-y: auto;
+}
+
+.tool-menu-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 12px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.tool-menu-item:hover {
+  background: var(--panel-soft);
+}
+
+.tool-menu-item.active {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.tool-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #eef2f7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex: 0 0 26px;
+}
+
+.tool-menu-item.active .tool-icon {
+  background: #dce7ff;
+}
+
+.main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-width: 0;
+}
+
+.topbar {
+  height: 76px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  backdrop-filter: blur(10px);
+}
+
+.topbar-title {
+  font-weight: 800;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-select,
+.form-control,
+textarea,
+input[type="text"] {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  outline: none;
+}
+
+.lang-select,
+.form-control,
+input[type="text"] {
+  height: 40px;
+  padding: 0 12px;
+}
+
+.lang-select:focus,
+.form-control:focus,
+textarea:focus,
+input[type="text"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 125, 243, 0.12);
+}
+
+.content {
+  padding: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #ffffff, #fbfcff);
+}
+
+.card-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.card-desc {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.form-row.compact {
+  margin-bottom: 8px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.field-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.field-inline .label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.format-row {
+  align-items: center;
+}
+
+.checkbox-inline {
+  margin-top: 0;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  min-height: 280px;
+  resize: vertical;
+  padding: 12px;
+  line-height: 1.5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 14px;
+}
+
+textarea.small {
+  min-height: 190px;
+}
+
+.help-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: var(--panel-soft);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-danger {
+  color: var(--danger);
+}
+
+.checkbox-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  user-select: none;
+}
+
+.file-input {
+  max-width: 100%;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  border: 0;
+  background: transparent;
+  padding: 12px 14px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--primary-dark);
+  border-bottom-color: var(--primary);
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.icon-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.overlay {
+  display: none;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(17, 24, 39, 0.92);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  z-index: 100;
+  opacity: 0;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+  text-align: center;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.empty-state {
+  border: 1px dashed var(--border);
+  background: var(--panel-soft);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar {
+    transform: translateX(-105%);
+    transition: transform 0.2s ease;
+    box-shadow: var(--shadow);
+  }
+
+  body.menu-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.35);
+    z-index: 25;
+  }
+
+  body.menu-open .overlay {
+    display: block;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .topbar {
+    height: 62px;
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .topbar-title {
+    flex: 1;
+    font-size: 16px;
+  }
+
+  .content {
+    padding: 12px;
+  }
+
+  .card-header,
+  .card-body {
+    padding: 14px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  textarea {
+    min-height: 220px;
+  }
+
+  .form-row {
+    align-items: stretch;
+  }
+
+  .field-inline {
+    flex: 1 1 100%;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field-inline .label {
+    margin-bottom: 0;
+  }
+
+  .form-row > .btn,
+  .form-row > .form-control,
+  .form-row > input[type="text"],
+  .form-row > select {
+    flex: 1 1 100%;
+  }
+
+  .checkbox-line {
+    flex: 1 1 100%;
+  }
+}
