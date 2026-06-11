@@ -1,22 +1,24 @@
 (function ($) {
   'use strict';
 
-  const APP_VERSION = 'v1.0.7';
+  const APP_VERSION = 'v1.0.8';
 
   const I18N = {
     zh: {
       appTitle: '开发工具箱',
-      stringConcat: 'String Concatenation',
+      stringConcat: '字符串拼接',
       excelJson: 'Excel ⇔ JSON',
-      baseConversion: 'Base Conversion',
-      generateCode: 'Generate Code',
-      regexValidation: 'Regular Expression Validation',
+      baseConversion: '进制转换',
+      generateCode: '代码生成',
+      regexValidation: '正则表达式验证',
       letterConverter: '字母转换器',
-      beautificationTools: 'Beautification Tools',
+      beautificationTools: '格式化工具',
       comingSoon: '后续工具预留位置',
       comingSoonDesc: '这个菜单已经预留，后面可以继续接入新工具。',
       input: '输入',
       output: '输出',
+      inputChip: '输入',
+      outputChip: '输出',
       convert: '转换',
       copy: '复制',
       copied: '已复制',
@@ -36,23 +38,23 @@
       jsonToExcel: 'JSON → Excel',
       excelJsonDesc: '支持导入 Excel 转 JSON，也支持粘贴 JSON 并导出为 Excel。所有数据只在浏览器本地处理，不上传服务器。',
       chooseExcel: '选择 Excel 文件',
-      selectSheet: '选择 Sheet',
+      selectSheet: '选择工作表',
       firstRowAsHeader: '第一行作为字段名',
-      exportAllSheets: '导出全部 Sheet',
+      exportAllSheets: '导出全部工作表',
       convertExcelToJson: '转换为 JSON',
       downloadJson: '下载 JSON',
       jsonInput: 'JSON 输入',
-      jsonPlaceholder: '例如：\n[\n  { "name": "A", "qty": 1 },\n  { "name": "B", "qty": 2 }\n]',
+      jsonPlaceholder: '例如：\n[\n  { "名称": "A", "数量": 1 },\n  { "名称": "B", "数量": 2 }\n]',
       fileName: '文件名',
       downloadExcel: '下载 Excel',
       invalidExcel: '请先选择 Excel 文件',
       invalidJson: 'JSON 格式不正确',
       converted: '转换完成',
       noJsonToDownload: '没有可下载的 JSON',
-      noSheet: '没有读取到 Sheet',
+      noSheet: '没有读取到工作表',
       xlsxMissing: 'Excel 功能依赖 xlsx 库，请检查网络或将 xlsx.full.min.js 下载到本地引用。',
-      singleSheetTip: '默认转换当前 Sheet；勾选“导出全部 Sheet”后，会按 Sheet 名生成 JSON 对象。',
-      jsonToExcelTip: '支持 JSON 数组、对象数组、二维数组；也支持 { "Sheet1": [...], "Sheet2": [...] } 这种多 Sheet 结构。'
+      singleSheetTip: '默认转换当前工作表；勾选“导出全部工作表”后，会按工作表名称生成 JSON 对象。',
+      jsonToExcelTip: '支持 JSON 数组、对象数组、二维数组；也支持 { "表1": [...], "表2": [...] } 这种多工作表结构。'
     },
     en: {
       appTitle: 'Developer Tools',
@@ -67,6 +69,8 @@
       comingSoonDesc: 'This item is reserved for future tools.',
       input: 'Input',
       output: 'Output',
+      inputChip: 'Input',
+      outputChip: 'Output',
       convert: 'Convert',
       copy: 'Copy',
       copied: 'Copied',
@@ -227,14 +231,14 @@
             <section class="editor-panel">
               <div class="editor-head">
                 <label class="label" for="stringInput">${escapeHtml(t('input'))}</label>
-                <span class="editor-chip">Input</span>
+                <span class="editor-chip">${escapeHtml(t('inputChip'))}</span>
               </div>
               <textarea class="editor-area" id="stringInput" placeholder="${escapeHtml(t('inputPlaceholder'))}"></textarea>
             </section>
             <section class="editor-panel">
               <div class="editor-head">
                 <label class="label" for="stringOutput">${escapeHtml(t('output'))}</label>
-                <span class="editor-chip">Output</span>
+                <span class="editor-chip">${escapeHtml(t('outputChip'))}</span>
               </div>
               <textarea class="editor-area" id="stringOutput" placeholder="${escapeHtml(t('outputPlaceholder'))}" readonly></textarea>
             </section>
