@@ -1,10 +1,11 @@
 (function ($) {
   'use strict';
 
+  const APP_VERSION = 'v1.0.7';
+
   const I18N = {
     zh: {
       appTitle: '开发工具箱',
-      appSubtitle: '静态网页工具集',
       stringConcat: 'String Concatenation',
       excelJson: 'Excel ⇔ JSON',
       baseConversion: 'Base Conversion',
@@ -55,7 +56,6 @@
     },
     en: {
       appTitle: 'Developer Tools',
-      appSubtitle: 'Static web toolbox',
       stringConcat: 'String Concatenation',
       excelJson: 'Excel ⇔ JSON',
       baseConversion: 'Base Conversion',
@@ -159,6 +159,8 @@
     $('[data-i18n]').each(function () {
       $(this).text(t($(this).data('i18n')));
     });
+    $('#appVersion').text(APP_VERSION);
+    document.title = `${t('appTitle')} ${APP_VERSION}`;
     $('#langSelect').val(state.lang);
   }
 
@@ -185,13 +187,13 @@
 
   function renderStringConcat() {
     return `
-      <div class="card">
-        <div class="card-header">
+      <div class="card tool-card string-tool-card">
+        <div class="card-header compact-header">
           <h2 class="card-title">${escapeHtml(t('stringConcat'))}</h2>
           <div class="card-desc">${escapeHtml(t('stringConcatDesc'))}</div>
         </div>
-        <div class="card-body">
-          <div class="form-row format-row">
+        <div class="card-body tool-body string-body">
+          <div class="workspace-toolbar format-row">
             <div class="field-inline">
               <label class="label" for="inputFormat">${escapeHtml(t('inputFormat'))}</label>
               <select id="inputFormat" class="form-control">
@@ -213,25 +215,32 @@
                 <option value="compact">Format(xxxx)</option>
               </select>
             </div>
-            <label class="checkbox-line checkbox-inline">
+            <label class="checkbox-line checkbox-inline compact-option">
               <input type="checkbox" id="splitCompactByChar" />
               <span>${escapeHtml(t('parseCompactByChar'))}</span>
             </label>
           </div>
 
-          <div class="grid-2">
-            <div class="form-group">
-              <label class="label" for="stringInput">${escapeHtml(t('input'))}</label>
-              <textarea id="stringInput" placeholder="${escapeHtml(t('inputPlaceholder'))}"></textarea>
-              <div class="help-text">${escapeHtml(t('stringHelp'))}</div>
-            </div>
-            <div class="form-group">
-              <label class="label" for="stringOutput">${escapeHtml(t('output'))}</label>
-              <textarea id="stringOutput" placeholder="${escapeHtml(t('outputPlaceholder'))}" readonly></textarea>
-            </div>
+          <div class="workspace-tip">${escapeHtml(t('stringHelp'))}</div>
+
+          <div class="string-grid editor-grid">
+            <section class="editor-panel">
+              <div class="editor-head">
+                <label class="label" for="stringInput">${escapeHtml(t('input'))}</label>
+                <span class="editor-chip">Input</span>
+              </div>
+              <textarea class="editor-area" id="stringInput" placeholder="${escapeHtml(t('inputPlaceholder'))}"></textarea>
+            </section>
+            <section class="editor-panel">
+              <div class="editor-head">
+                <label class="label" for="stringOutput">${escapeHtml(t('output'))}</label>
+                <span class="editor-chip">Output</span>
+              </div>
+              <textarea class="editor-area" id="stringOutput" placeholder="${escapeHtml(t('outputPlaceholder'))}" readonly></textarea>
+            </section>
           </div>
 
-          <div class="form-row compact">
+          <div class="action-bar">
             <button class="btn btn-primary" type="button" id="btnStringConvert">${escapeHtml(t('convert'))}</button>
             <button class="btn" type="button" id="btnStringCopy">${escapeHtml(t('copy'))}</button>
             <button class="btn" type="button" id="btnStringSwap">${escapeHtml(t('swapToInput'))}</button>
@@ -244,50 +253,64 @@
 
   function renderExcelJson() {
     return `
-      <div class="card">
-        <div class="card-header">
+      <div class="card tool-card excel-tool-card">
+        <div class="card-header compact-header">
           <h2 class="card-title">${escapeHtml(t('excelJson'))}</h2>
           <div class="card-desc">${escapeHtml(t('excelJsonDesc'))}</div>
         </div>
-        <div class="card-body">
-          <div class="tabs">
+        <div class="card-body tool-body excel-body">
+          <div class="tabs tool-tabs">
             <button class="tab-btn active" type="button" data-tab="excelToJsonPane">${escapeHtml(t('excelToJson'))}</button>
             <button class="tab-btn" type="button" data-tab="jsonToExcelPane">${escapeHtml(t('jsonToExcel'))}</button>
           </div>
 
-          <div class="tab-pane active" id="excelToJsonPane">
-            <div class="form-row">
-              <label class="label" for="excelFile">${escapeHtml(t('chooseExcel'))}</label>
-              <input class="file-input" type="file" id="excelFile" accept=".xlsx,.xls,.csv" />
-              <select id="sheetSelect" class="form-control" disabled>
-                <option value="">${escapeHtml(t('selectSheet'))}</option>
-              </select>
-              <label class="checkbox-line">
+          <div class="tab-pane active excel-pane" id="excelToJsonPane">
+            <div class="workspace-toolbar excel-controls">
+              <div class="field-inline file-field">
+                <label class="label" for="excelFile">${escapeHtml(t('chooseExcel'))}</label>
+                <input class="file-input" type="file" id="excelFile" accept=".xlsx,.xls,.csv" />
+              </div>
+              <div class="field-inline sheet-field">
+                <label class="label" for="sheetSelect">${escapeHtml(t('selectSheet'))}</label>
+                <select id="sheetSelect" class="form-control" disabled>
+                  <option value="">${escapeHtml(t('selectSheet'))}</option>
+                </select>
+              </div>
+              <label class="checkbox-line compact-option">
                 <input type="checkbox" id="headerRow" checked />
                 <span>${escapeHtml(t('firstRowAsHeader'))}</span>
               </label>
-              <label class="checkbox-line">
+              <label class="checkbox-line compact-option">
                 <input type="checkbox" id="allSheets" />
                 <span>${escapeHtml(t('exportAllSheets'))}</span>
               </label>
             </div>
-            <div class="help-text">${escapeHtml(t('singleSheetTip'))}</div>
-            <div class="form-row" style="margin-top: 14px;">
+            <div class="workspace-tip">${escapeHtml(t('singleSheetTip'))}</div>
+            <div class="action-bar excel-action-bar">
               <button class="btn btn-primary" type="button" id="btnExcelToJson">${escapeHtml(t('convertExcelToJson'))}</button>
               <button class="btn" type="button" id="btnCopyJson">${escapeHtml(t('copy'))}</button>
               <button class="btn" type="button" id="btnDownloadJson">${escapeHtml(t('downloadJson'))}</button>
               <button class="btn btn-danger" type="button" id="btnClearExcelJson">${escapeHtml(t('clear'))}</button>
             </div>
-            <textarea class="small" id="excelJsonOutput" placeholder="${escapeHtml(t('outputPlaceholder'))}"></textarea>
+            <section class="editor-panel output-panel">
+              <div class="editor-head">
+                <label class="label" for="excelJsonOutput">${escapeHtml(t('output'))}</label>
+                <span class="editor-chip">JSON</span>
+              </div>
+              <textarea class="editor-area small" id="excelJsonOutput" placeholder="${escapeHtml(t('outputPlaceholder'))}"></textarea>
+            </section>
           </div>
 
-          <div class="tab-pane" id="jsonToExcelPane">
-            <div class="form-group">
-              <label class="label" for="jsonInput">${escapeHtml(t('jsonInput'))}</label>
-              <textarea id="jsonInput" placeholder="${escapeHtml(t('jsonPlaceholder'))}"></textarea>
-              <div class="help-text">${escapeHtml(t('jsonToExcelTip'))}</div>
-            </div>
-            <div class="form-row">
+          <div class="tab-pane excel-pane" id="jsonToExcelPane">
+            <section class="editor-panel json-input-panel">
+              <div class="editor-head">
+                <label class="label" for="jsonInput">${escapeHtml(t('jsonInput'))}</label>
+                <span class="editor-chip">JSON</span>
+              </div>
+              <textarea class="editor-area" id="jsonInput" placeholder="${escapeHtml(t('jsonPlaceholder'))}"></textarea>
+            </section>
+            <div class="workspace-tip">${escapeHtml(t('jsonToExcelTip'))}</div>
+            <div class="action-bar json-action-bar">
               <label class="label" for="excelFileName">${escapeHtml(t('fileName'))}</label>
               <input type="text" id="excelFileName" value="data.xlsx" />
               <button class="btn btn-primary" type="button" id="btnJsonToExcel">${escapeHtml(t('downloadExcel'))}</button>
@@ -664,6 +687,8 @@
   }
 
   $(function () {
+    $('#appVersion').text(APP_VERSION);
+    document.title = `${t('appTitle')} ${APP_VERSION}`;
     $('#langSelect').val(state.lang);
     applyI18n();
     renderMenu();

@@ -1,0 +1,23 @@
+{
+  "name": "开发工具箱",
+  "short_name": "工具箱",
+  "description": "Developer Tools static web app",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#eef4ff",
+  "theme_color": "#4f7df3",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
