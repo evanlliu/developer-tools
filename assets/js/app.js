@@ -1,7 +1,7 @@
 (function ($) {
   'use strict';
 
-  const APP_VERSION = 'v1.0.8';
+  const APP_VERSION = 'v1.0.9';
 
   const I18N = {
     zh: {
